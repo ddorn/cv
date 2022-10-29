@@ -1,0 +1,227 @@
+% (c) 2002 Matthew Boedicker <mboedick@mboedick.org> (original author) http://mboedick.org
+% (c) 2003-2007 David J. Grant <davidgrant-at-gmail.com> http://www.davidgrant.ca
+% (c) 2008 Nathaniel Johnston <nathaniel@nathanieljohnston.com> http://www.nathanieljohnston.com
+% (l) 2012 Arun I B <arunib@smail.iitm.ac.in> http://www.ee.iitm.ac.in/~ee10s026/
+%This work is licensed under the Creative Commons Attribution-Noncommercial-Share Alike 2.5 License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/2.5/ or send a letter to Creative Commons, 543 Howard Street, 5th Floor, San Francisco, California, 94105, USA.
+
+\documentclass[letterpaper,11pt]{article}
+\newlength{\outerbordwidth}
+\pagestyle{empty}
+\raggedbottom
+\raggedright
+\usepackage[svgnames]{xcolor}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{framed}
+\usepackage{times}
+\usepackage{tocloft}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage[utf8]{inputenc}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
+\title{DORN-CV}
+%-----------------------------------------------------------
+%Edit these values as you see fit
+
+\setlength{\outerbordwidth}{3pt}  % Width of border outside of title bars
+\definecolor{shadecolor}{gray}{0.75}  % Outer background color of title bars (0 = black, 1 = white)
+\definecolor{shadecolorB}{gray}{0.93}  % Inner background color of title bars
+
+
+%-----------------------------------------------------------
+%Margin setup
+
+\setlength{\evensidemargin}{-0.25in}
+\setlength{\headheight}{-0.65in}
+\setlength{\headsep}{0in}
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\paperheight}{11in}
+\setlength{\paperwidth}{8.5in}
+\setlength{\tabcolsep}{0in}
+\setlength{\textheight}{11in}
+\setlength{\textwidth}{7in}
+\setlength{\topmargin}{-0.3in}
+\setlength{\topskip}{0in}
+\setlength{\voffset}{0in}
+
+
+%-----------------------------------------------------------
+%Custom commands
+\newcommand{\comment}[1]{\ignorespaces}
+\newcommand{\resitem}[1]{\item #1 \vspace{-2pt}}
+  \newcommand{\resheading}[1]{\vspace{-5pt}
+  \parbox{\textwidth}{\setlength{\FrameSep}{\outerbordwidth}
+  \begin{shaded}
+    \setlength{\fboxsep}{0pt}\framebox[\textwidth][l]{\setlength{\fboxsep}{4pt}\fcolorbox{shadecolorB}{shadecolorB}{\textbf{\sffamily{\mbox{~}\makebox[6.762in][l]{\large{\textsc{#1}}} \vphantom{p\^{E}}}}}}
+  \end{shaded}
+  }\vspace{-10pt}
+  }
+  \newcommand{\ressubheading}[4]{
+    \begin{tabular*}{6.5in}{l@{\cftdotfill{\cftsecdotsep}\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{#3} & \textit{#4} \\
+    \end{tabular*}\vspace{-8pt}}
+  %-----------------------------------------------------------
+
+
+  \begin{document}
+
+  %-----------------------------------------------------------
+  \begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
+    & \multirow{4}{*}{\rotatebox{0}{\includegraphics[height=3.7cm]{photo.JPG}}}\\
+    & \\
+    %-----------------------------------------------------------
+    \textbf{\Large Diego DORN } & \\
+    Chemin des Triaudes, 11-120, 1024 Ecublens, Suisse \\
+    \href{mailto:diego.dorn@epfl.ch}{\texttt{diego.dorn@epfl.ch}} \\
+    +33 6 95 40 21 62 \\
+    Date of birth : September 30, 1999 \\
+    \href{https://cozyfractal.com}{\texttt{cozyfractal.com}} \\
+  \end{tabular*}
+  \\
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \resheading{Education}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{itemize}
+    \item
+      \ressubheading{École Polytechnique Fédérale de Lausanne}{Lausanne,
+        Switzerland}{Department of Mathematics}{2021 - present}
+      \begin{itemize}
+        \resitem{Master of Mathematics with a minor in Computer Science started in September}
+      \end{itemize}
+
+    \item
+      \ressubheading{École Polytechnique Fédérale de Lausanne}{Lausanne,
+        Switzerland}{Department of Mathematics}{2018 - 2021}
+      \begin{itemize}
+        \resitem{Bachelor of Mathematics passed with a $5.42/6$ average}
+      \end{itemize}
+
+  % \item
+  %   \ressubheading{ENS de Lyon}{Lyon, France}{Department of Computer Science}{2019 - 2021}
+  %   \begin{itemize}
+  %     \resitem{Validated the \textit{``Foundations of Computer Science Bachelor''} with a 16.502/20 average, ranking 9th in a promotion of 36 students}
+  %     \resitem{Validated the first year of the \textit{``Foundations of Computer
+  %         Science Master''} with a 16.06/20 average, ranking 7th in a promotion of 36
+  %       students}
+  %   \end{itemize}
+  %   \item
+  %     \ressubheading{University of Strasbourg}{Strasbourg, France}{Department of Computer Science}{2017 - 2019}
+  %     \begin{itemize}
+	%   \resitem{Bachelor in Engineering \textit{``Cursus de Master en Ingénierie : Informatique, Systèmes et Réseaux''} (CMI ISR)}
+	%   \resitem{Passed first year with a 14.692/20 average, ranking 11th in a promotion of more than 200 students}
+	%   \resitem{Passed second year with a 15.651/20 average, ranking 2nd in a promotion of 74 students}
+  %     \end{itemize}
+
+  \end{itemize}
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \resheading{Work Experience}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{itemize}
+
+  \item
+    \ressubheading{SPRIG
+      (\texttt{\textmd{\href{https://sprig.ch/}{sprig.ch}}})}{Lausanne,
+      Switzerland}{Lead developer}{2022 - present}
+    \begin{itemize}
+      \resitem{Developing a distributed platform to increase confidence in
+      mathematical proofs}
+    \end{itemize}
+
+  \item
+    \ressubheading{École Polytechnique Fédérale de Lausanne
+      %(\texttt{\textmd{\href{https://epfl.ch/}{https://epfl.ch/}}})
+      }{Lausanne,
+    Switzerland}{Teaching assistant}{2019 - 2021}
+    \begin{multicols}{2}[]
+      \begin{itemize}
+        \resitem{Fall 2021: \textit{Mathematical logic}
+        }
+        \resitem{2020 - 2021:
+          \begin{itemize}
+            \resitem{\textit{Analyse III} (complex analysis)}
+            \resitem{\textit{Information, Calcul et Communication} (computer science basics)}
+            \resitem{ \textit{Programation orientée objet}} (C++ OOP)
+            \resitem{MOOCs \textit{Introduction to C++} and \textit{Introduction to OOP in C++}}
+          \end{itemize}
+        }
+        \resitem{2019 - 2020:
+          \vspace{-0.5em}
+          \begin{itemize}
+            \resitem{ \textit{Analyse I} (real 1D analysis)}
+            \resitem{ \textit{Analyse II} (vectorial analysis)}
+            \resitem{ \textit{Information, Calcul et Communication} (computer science basics)}
+            \resitem{ \textit{Programation orientée objet}} (C++ OOP)
+          \end{itemize}
+        }
+
+        \item[\vspace{\fill}]
+      \end{itemize}
+    \end{multicols}
+
+    % \item
+    %   \ressubheading{ICube Laboratory}{Strasbourg, France}{Semester project}{June 2019}
+    %   \begin{itemize}
+    %     \resitem{\textit{``Infinite games in the Baire space''}, guided research}
+    %   \end{itemize}
+
+  \end{itemize}
+
+  \resheading{Volunteering}
+
+  \begin{itemize}
+    \item
+      \ressubheading{President of CQFD}{Lausanne, Switzerland}
+        {The mathematics students association of EPFL}{2020 - 2021}
+      \begin{itemize}
+        \resitem{Management of a team of 14 people, redesign of social and academic
+        events to accommodate the pandemic}
+      \end{itemize}
+
+    \item
+      \ressubheading{Member of the national organisation committee of the TFJM$^\mathbf{2}$}{France}
+      {The french tournament of young mathematicians}{2020 - 2021}
+      \begin{itemize}
+        \resitem{Coordination of 9 events across France, development of a new
+          online infrastructure and external communication}
+      \end{itemize}
+
+  \end{itemize}
+
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \resheading{Skills}
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \begin{itemize}
+    \resitem{
+      \textbf{Programming Languages : } Python, Rust, Scala, JavaScript, C/C++, Matlab, Lean,
+      6502/NES assembly
+    }
+
+    \resitem{
+      \textbf{Tools:} ArchLinux (i3wm/sway), Git, Vim, Jetbrains IDEs, \LaTeX
+    }
+
+    \resitem{
+      \textbf{Projects:} see \texttt{\textmd{\href{https://gitlab.com/ddorn}{https://gitlab.com/ddorn}}}
+    }
+
+    \resitem{
+      \textbf{Languages:} French (native), English (fluent), Italian \& German (basics, willing to learn more)
+    }
+
+    \resitem{
+      \textbf{Others:} climbing (since 2006), juggling (on a bike), cooking, photography, hot chocolate
+    }
+
+  \end{itemize}
+
+  % TODO: Add a section about my interests !
+
+\end{document}
