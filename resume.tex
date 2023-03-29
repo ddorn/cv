@@ -17,10 +17,17 @@
 \usepackage{tocloft}
 \usepackage{graphicx}
 \usepackage{multirow}
+\usepackage{ifthen}
 \usepackage[utf8]{inputenc}
 \usepackage{multicol}
 \usepackage{tabularx}
 \usepackage[hidelinks]{hyperref}
+
+% To put around photo, birthdate etc
+% for applications that don't like personal info
+\newcommand{\ShowPersonalInfo}{1}  % 1 = show, 0 = hide
+\newcommand{\PersonalInfo}[1]{\ifthenelse{\equal{\ShowPersonalInfo}{1}}{#1}{}}
+
 \title{DORN-CV}
 %-----------------------------------------------------------
 %Edit these values as you see fit
@@ -70,14 +77,17 @@
 
   %-----------------------------------------------------------
   \begin{tabular*}{7in}{l@{\extracolsep{\fill}}r}
-    & \multirow{4}{*}{\rotatebox{0}{\includegraphics[height=3.7cm]{photo.JPG}}}\\
+    & \multirow{4}{*}{\rotatebox{0}{\PersonalInfo{
+      \includegraphics[height=3.7cm]{photo.JPG}}}
+    }\\
     & \\
     %-----------------------------------------------------------
     \textbf{\Large Diego DORN } & \\
     Chemin des Triaudes, 11-120, 1024 Ecublens, Suisse \\
     \href{mailto:diego.dorn@epfl.ch}{\texttt{diego.dorn@epfl.ch}} \\
     +33 6 95 40 21 62 \\
-    Date of birth : September 30, 1999 \\
+    \PersonalInfo{
+      Date of birth : September 30, 1999 \\}
     \href{https://cozyfractal.com}{\texttt{cozyfractal.com}}
     \hspace{10pt}
     \href{https://gitlab.com/ddorn}{\texttt{gitlab.com/ddorn}} \\
@@ -189,7 +199,7 @@
       \ressubheading{Founder of the Lausanne AI Alignment group}{Lausanne, Switzerland}
         {Group for making AI beneficial and reducing related catastrophic risks}{2022 - present}
       \begin{itemize}
-        \resitem{Organisation of a 10-day bootcamp on AI Alignment and a reading group}
+        \resitem{Organisation of a 10-day bootcamp on AI Alignment, talks and a reading group}
       \end{itemize}
 
     \item
@@ -217,7 +227,7 @@
 
   \end{itemize}
 
-
+  \newpage
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \resheading{Skills}
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -237,8 +247,10 @@
       \textbf{Languages:} French (native), English (fluent), Italian \& German (basics, willing to learn more)
     }
 
-    \resitem{
-      \textbf{Others:} climbing (since 2006), juggling (on a bike), cooking (vegan), hot chocolate
+    \PersonalInfo{
+      \resitem{
+        \textbf{Others:} climbing (since 2006), juggling (on a bike), cooking (vegan), hot chocolate
+      }
     }
 
   \end{itemize}
