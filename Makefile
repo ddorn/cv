@@ -1,13 +1,13 @@
-CC = pdflatex
+CC = latexmk -output-directory=out -pdf
 
 
-all: resume.pdf french_resume.pdf
+all: out/resume.pdf
 
-%.pdf: %.tex
+out/%.pdf: %.tex
 	@echo "Compiling $@"
 	@$(CC) $^
 
 
-
 clean:
-	rm *.pdf *.log *.out *.aux
+	rm -r out/
+	rm *.log *.out *.aux
