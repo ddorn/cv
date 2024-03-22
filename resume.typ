@@ -12,16 +12,19 @@
 }
 #show link: it => underline(it, stroke: rgb("d0bab0"))
 
+// Emojis taken from https://github.com/ariabuckles/twemoji-svg/tree/master/assets/svg
+// Unicode point can be looked up https://www.emojiall.com/en/code/1F4C4
 #let emoji-svg(name, is-flag: false) = [
   #let base = if is-flag { 0em } else { 0.2em }
   #let height = if is-flag { 0.66em } else { 1em }
-  #box(baseline: base, clip: true, height: height)[#image("images/" + name + ".svg", height: height)]
+  #box(baseline: base)[#image("images/" + name + ".svg", height: height)]
 ]
 
 #show ", UK": emoji-svg("uk", is-flag: true)
 #show ", FR": emoji-svg("fr", is-flag: true)
 #show ", DE": emoji-svg("de", is-flag: true)
 #show ", CH": emoji-svg("ch", is-flag: true)
+#show "📄": emoji-svg("page")
 
 #let entry(name, descr, dates, loc, url: none) = [
     #grid(columns: (side, auto), 
@@ -43,11 +46,12 @@
       #link("https://cozyfractal.com")[`cozyfractal.com`]\
     #emoji-svg("github")
       #link("https://github.com/ddorn")[`github.com/ddorn`]
-    ][
-    Diego finishes his master in August 2024, with professional expertise 
+    ][ #box(width: 90%)[
+    Diego finishes his master in August 2024, with \~1 year of professional expertise 
     in *software engineering* and *teaching*, especially in the
     measurement and mitigation of *risks* from 
     *artificial intelligence* systems.
+    ]
   ][
     #image("images/photo.JPG", height: 3.5cm)
   ]
@@ -56,8 +60,8 @@
 #v(-0.4cm)
 = Work Experience
 #entry([Research engineer at EffiSciences],
-  [Automated supervision of LLM-agents, design a benchmark to evaluate detection of out-of-distribution failure modes by monitoring systems.], 
-  [Feb. 2024 -- now],
+  [Automated supervision of LLM-agents, design of a benchmark to evaluate detection of out-of-distribution failure modes by monitoring systems.], 
+  [Feb. 2024 -- present],
   [Paris, FR])
   
 #entry([Research assistant, Machine Learning Group, Cambridge University],
@@ -110,7 +114,7 @@
   [Lausanne, CH])
   
 #entry([President of CQFD],
-  [The mathematics students association of EPFL],
+  [The association of mathematics students of EPFL],
   [2020 -- 2021],
   [Lausanne, CH])
   
@@ -176,4 +180,3 @@
   
 - *Collaboration:* Non-violent communication
 - #strong[Languages:] French (native), English (fluent), Italian & German (basics, willing to learn more)
-
