@@ -1,11 +1,11 @@
-CC = latexmk -output-directory=out -pdf
+# CC = latexmk -output-directory=out -pdf
 
 
 all: out/resume.pdf
 
-out/%.pdf: %.tex
-	@echo "Compiling $@"
-	@$(CC) $^
+out/%.pdf: %.typ
+	echo "Compiling $@"
+	typst compile $< $@
 
 
 clean:
