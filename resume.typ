@@ -1,5 +1,4 @@
 #set page(margin: (x: 0.5cm, top: 0.0cm, bottom: 0.5cm))
-// #set page(margin: 0cm)
 
 #let accent = rgb("faf5f0")
 #let side = 3cm
@@ -16,7 +15,7 @@
 #let emoji-svg(name, is-flag: false) = [
   #let base = if is-flag { 0em } else { 0.2em }
   #let height = if is-flag { 0.66em } else { 1em }
-  #box(baseline: base)[#image("images/" + name + ".svg", height: height)]
+  #box(baseline: base, clip: true, height: height)[#image("images/" + name + ".svg", height: height)]
 ]
 
 #show ", UK": emoji-svg("uk", is-flag: true)
@@ -37,16 +36,18 @@
 
 #box(height: 3.3cm)[
   #grid(columns: (auto, 1fr, auto), inset: (0cm, 0.5cm, 0cm), align: (horizon, right + bottom, left))[
-    #text(size: 20pt)[#strong[Diego DORN]]\
-    #emoji-svg("enveloppe") #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
-    #emoji-svg("internet")
-     #link("https://cozyfractal.com")[`cozyfractal.com`]\
-   #emoji-svg("github")
+    #text(size: 20pt)[*Diego DORN*]\
+    #emoji-svg("enveloppe") 
+      #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
+    #emoji-svg("internet") 
+      #link("https://cozyfractal.com")[`cozyfractal.com`]\
+    #emoji-svg("github")
       #link("https://github.com/ddorn")[`github.com/ddorn`]
     ][
     Diego finishes his master in August 2024, with professional expertise 
-    in *software engineering* and *teaching*, especially in the of measurement and mitigation of *risks* from 
-    *artificial intelligence systems*.
+    in *software engineering* and *teaching*, especially in the
+    measurement and mitigation of *risks* from 
+    *artificial intelligence* systems.
   ][
     #image("images/photo.JPG", height: 3.5cm)
   ]
@@ -55,7 +56,7 @@
 #v(-0.4cm)
 = Work Experience
 #entry([Research engineer at EffiSciences],
-  [Automated supervision of LLM-agents],
+  [Automated supervision of LLM-agents, design a benchmark to evaluate detection of out-of-distribution failure modes by monitoring systems.], 
   [Feb. 2024 -- now],
   [Paris, FR])
   
@@ -98,13 +99,13 @@
   [2022 -- 2024],
   [Lausanne, CH])
   
-#entry([Vice-president, then Advisor of Effective Altruism Lausanne],
+#entry([Vice-president, then advisor for Effective Altruism Lausanne],
   [Association aiming to find the best ways to help others and put them into practice],
   [2022 -- 2023],
   [Lausanne, CH])
   
 #entry([Co-founder of Chocopoly, the hot chocolate association of EPFL],
-  [Followed by 400+ students, collaborated with 19 associations and served 1288L of chocolate],
+  [Followed by 400+ students, collaborated with 19 associations and served 1288L of hot chocolate],
   [2021 -- 2023],
   [Lausanne, CH])
   
@@ -153,18 +154,6 @@
   [Passed with a 5.42/6 average and top 5/100 of my year.],
   [2018 -- 2021],
   [Lausanne, CH])
-// ][
-//   #rect(width: 100%, height: 100%, fill: accent, stroke: (left: black), inset: 0cm)[
-//     #align(right)[#rect(inset: 0cm, stroke: (bottom: 2pt))[
-//       #image("photo.JPG", width: side - 0.5pt, height: side - 0.5pt)
-//     ]]
-//     #block(inset: 0.3cm)[
-//       == Technical skills
-//       - Python (6000h)
-//     ]
-//   ]
-// ]
-
 
 
 #pagebreak()
@@ -187,3 +176,4 @@
   
 - *Collaboration:* Non-violent communication
 - #strong[Languages:] French (native), English (fluent), Italian & German (basics, willing to learn more)
+
