@@ -20,35 +20,36 @@
 // Emojis taken from https://github.com/ariabuckles/twemoji-svg/tree/master/assets/svg
 // Unicode point can be looked up https://www.emojiall.com/en/code/1F4C4
 // You can add new emojis&flags in the images/ folder. Note that typing emojis directly in the text with render in the preview, but not work inside the pdf (the preview is a png! :o)
-#let emoji-svg(name, is-flag: false) = [
-  #let base = if is-flag { 0em } else { 0.2em }
-  #let height = if is-flag { 0.66em } else { 1em }
-  #box(baseline: base)[#image("images/" + name + ".svg", height: height)]
-]
-
+#let emoji-svg(name, is-flag: false, txt: none) = {
+  let base = if is-flag { 0em } else { 0.2em }
+  let height = if is-flag { 0.66em } else { 1em }
+  h(0.3em, weak: true)
+  // We add text, invisible for humans (they have the emoji) but visible for machines, which don't see the images
+  if txt != none { text(size: 0pt, txt)}
+  box(baseline: base)[#image("images/" + name + ".svg", height: height, alt: txt)]
+}
 // Those show the flags, by replacing every instance of ", UK" by the UK flag.
-#show ", UK": emoji-svg("uk", is-flag: true)
-#show ", FR": emoji-svg("fr", is-flag: true)
-#show ", DE": emoji-svg("de", is-flag: true)
-#show ", CH": emoji-svg("ch", is-flag: true)
-#show ", US": emoji-svg("us", is-flag: true)
-#show ", NO": emoji-svg("no", is-flag: true)
-#show "📄": emoji-svg("page")
+#show ", UK": emoji-svg("uk", is-flag: true, txt: "United Kingdom")
+#show ", FR": emoji-svg("fr", is-flag: true, txt: "France")
+#show ", DE": emoji-svg("de", is-flag: true, txt: "Germany")
+#show ", CH": emoji-svg("ch", is-flag: true, txt: "Switzerland")
+#show ", US": emoji-svg("us", is-flag: true, txt: "United States of America")
+#show ", NO": emoji-svg("no", is-flag: true, txt: "Norway")
 
 #let entry(name, descr, dates, loc, url: none) = [
-    #grid(columns: (side, auto), 
-      gutter: 0.6cm,
-      // inset: (x: 0.3cm),
-      align: (right, left),
-      [#loc\
-        _#dates _],
-      [*#name* #if url != none [(#url)]\
-         _#descr _ ],
-    )
+  #grid(columns: (side, auto), 
+    gutter: 0.6cm,
+    // inset: (x: 0.3cm),
+    align: (right, left),
+    [#loc\
+      _#dates _],
+    [*#name* #if url != none [(#url)]\
+       _#descr _ ],
+  )
 ]
 
 // Header
-#box(height: 3.5cm)[
+#box(height: 4cm)[
   #grid(
     columns: (auto, 1fr, auto), 
     inset: (0cm, 0.5cm, 0cm), 
@@ -56,13 +57,14 @@
   )[
     #v(0.5cm)
     #text(size: 20pt)[*Diego DORN*]\
+    #text(size: 16pt)[Research Engineer]\
     #emoji-svg("enveloppe") 
       #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
     #emoji-svg("internet") 
       #link("https://cozyfractal.com")[`cozyfractal.com`]\
     #emoji-svg("github")
       #link("https://github.com/ddorn")[`github.com/ddorn`]
-  ][ #box(width: 80%)[  // You can tweak this number% for the width of the description text so that it looks best
+  ][ #box(width: 85%)[  // You can tweak this number% for the width of the description text so that it looks best
     #show strong: txt => [#text(fill: accent-strong)[#txt]]  // Color the bold text
     Diego finishes his master in August 2024, with \~1 year of professional expertise 
     in *software engineering* and *teaching*, especially in the
@@ -79,27 +81,28 @@
   [Automated supervision of LLM-agents, design of a benchmark to evaluate detection of out-of-distribution failure modes by monitoring systems.], 
   [Feb. 2024 -- present],
   [Paris, FR])
-  
+
 #entry([Research assistant, Machine Learning Group, Cambridge University],
-  [Research on goal misgeneralisation with N. Alex and D. Krueger.\
-  📄 "#link(
+  [Research on goal misgeneralisation in Reinforcement Learning (RL) with N. Alex and D. Krueger.\
+  #emoji-svg("page") "#link(
     "https://openreview.net/forum?id=QT4tXTqTTr",
   )[ #emph[Goal Misgeneralization as Implicit Goal Conditioning]]" in the GCRL workshop at Neurips 2023
 ],
   [July -- Sep. 2023],
   [Cambridge, UK])
-  
+
 #entry([Teacher at ML4Good, a summer school on AI risk],
   [Delivery and improvement of 10 days of technical and conceptual content. 21 participants.],
   [August 2023],
   [Berlin, DE])
-  
+
 #entry([Lead developer for SPRIG],
   [Developing a distributed platform to increase confidence in mathematical proofs.],
   [2022 -- 2023],
   [Lausanne, CH],
   url: [#link("https://sprigproofs.org")[`sprigproofs.org`]]
 )
+
 #entry([Teaching assistant at EPFL],
   [TA for 8 courses for 1st, 2nd and 3rd year bachelors: Analysis (real, vectorial, complex), C++, mathematical logic, computer science basics.],
   [2019 - 2021],
@@ -160,10 +163,10 @@
 
 #entry([Semester research projects in Mathematical Logic and Game Theory],
   [Guided research under Jacques Duparc's supervision\
-   📄 "#link(
+   #emoji-svg("page") "#link(
       "https://gitlab.com/ddorn/ba6/-/jobs/artifacts/master/raw/projet/projet.pdf?job=pdf",
     )[ #emph[Infinite games in the Baire space] ]", Bachelor thesis, Spring 2021\
-   📄 "#link(
+   #emoji-svg("page") "#link(
       "https://github.com/ddorn/safra/blob/master/out/projet.pdf",
     )[ #emph[Between decidable logics: $omega$-automata and infinite games]]", Master’s semester project, Spring 2022
 ],
