@@ -4,6 +4,7 @@
 #let accent-strong = rgb("#CDA56D")  // for bold text
 #let accent-weak = rgb("d0bab0")  // for links
 #let side = 3cm
+#let use-stars = false
 
 // Style for the colored headings
 #show heading.where(level: 1): heading => {
@@ -20,195 +21,255 @@
 // Emojis taken from https://github.com/ariabuckles/twemoji-svg/tree/master/assets/svg
 // Unicode point can be looked up https://www.emojiall.com/en/code/1F4C4
 // You can add new emojis&flags in the images/ folder. Note that typing emojis directly in the text with render in the preview, but not work inside the pdf (the preview is a png! :o)
-#let emoji-svg(name, is-flag: false, txt: none) = {
-  let base = if is-flag { 0em } else { 0.2em }
-  let height = if is-flag { 0.66em } else { 1em }
+#let emoji-svg(name, is-flag: false) = {
   h(0.3em, weak: true)
-  // We add text, invisible for humans (they have the emoji) but visible for machines, which don't see the images
-  if txt != none { text(size: 0pt, txt)}
-  box(baseline: base)[#image("images/" + name + ".svg", height: height, alt: txt)]
+  box(baseline: 0em, height: 0.666em)[#image("images/" + name + ".svg", height: 1em)]
 }
-// Those show the flags, by replacing every instance of ", UK" by the UK flag.
-#show ", UK": emoji-svg("uk", is-flag: true, txt: "United Kingdom")
-#show ", FR": emoji-svg("fr", is-flag: true, txt: "France")
-#show ", DE": emoji-svg("de", is-flag: true, txt: "Germany")
-#show ", CH": emoji-svg("ch", is-flag: true, txt: "Switzerland")
-#show ", US": emoji-svg("us", is-flag: true, txt: "United States of America")
-#show ", NO": emoji-svg("no", is-flag: true, txt: "Norway")
+#let flag(name) = {
+  h(0.3em, weak: true)
+  box()[#move(dy: -0.2em)[
+    #box(height: 0.66em)[#image("images/" + lower(name) + ".svg", height: 0.9em)]
+  ]]
+}
 
-#let entry(name, descr, dates, loc, url: none) = [
+#let countries = (
+  "fr": "France",
+  "uk": "UK",
+  "de": "Germany",
+  "ch": "CH",
+  "be": "Belgium",
+)
+
+
+#let loc(city, country) = { city; flag(country) }
+// #let loc(city, country) = { city; if country != "earth" [,  #upper(country)]}
+// #let loc(city, country) = { city; ", "; (countries.at(lower(country)))}
+#let Paris = loc("Paris", "fr")
+#let Lausanne = loc("Lausanne", "ch")
+#let Berlin = loc("Berlin", "de")
+#let Cambridge = loc("Cambridge", "uk")
+#let London = loc("London", "uk")
+#let Bruxelles = loc("Bruxelles", "be")
+
+
+#let entry(name, descr, dates, loc, url: none, star: false) = [
   #grid(columns: (side, auto), 
     gutter: 0.6cm,
     // inset: (x: 0.3cm),
+    // stroke: black,
     align: (right, left),
-    [#loc\
+    [ //#if star { place(emoji-svg("star"), dx: -0.0em, dy: -0.0em)}
+      #loc \
       _#dates _],
-    [*#name* #if url != none [(#url)]\
+    [#if star and use-stars { emoji-svg("star")}
+      *#name* #if url != none [(#url)]\
        _#descr _ ],
   )
+  #v(-0.06cm)
 ]
+
+
 
 // Header
 #box(height: 4cm)[
   #grid(
     columns: (auto, 1fr, auto), 
     inset: (0cm, 0.5cm, 0cm), 
-    align: (left + top, right + bottom, left)
+    align: (left + top, right + bottom, left),
+    // stroke: black
   )[
     #v(0.5cm)
     #text(size: 20pt)[*Diego DORN*]\
     #text(size: 16pt)[Research Engineer]\
+    #v(1fr)
     #emoji-svg("enveloppe") 
       #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
     #emoji-svg("internet") 
       #link("https://cozyfractal.com")[`cozyfractal.com`]\
     #emoji-svg("github")
       #link("https://github.com/ddorn")[`github.com/ddorn`]
-  ][ #box(width: 85%)[  // You can tweak this number% for the width of the description text so that it looks best
+    #v(0.5cm)
+  ][ #box(width: 92%, height: 100%)[  // You can tweak this number% for the width of the description text so that it looks best
     #show strong: txt => [#text(fill: accent-strong)[#txt]]  // Color the bold text
-    Diego finishes his master in August 2024, with \~1 year of professional expertise 
-    in *software engineering* and *teaching*, especially in the
-    mitigation of *systemic risks* from 
-    *artificial intelligence* systems.
-  ]][
-    #image("images/photo.JPG")
+    Diego works on the 
+    mitigation of *systemic risks* \ from 
+    *general-purpose artificial intelligence* systems.
+    
+    He has extensive expertise in *software engineering* and
+    experience in *teaching*, *leadership* and *communication* from his volunteering.\
+     // and volunteer expertise in *management* and *event organisation* especially in the
+    He finishes his master in Communication Systems in August 2024.
+  ] //#h(-0.5cm)
+][
+    // #image("images/photo.JPG")
   ]
 ]
 
 #v(-0.4cm)
 = Work Experience
 #entry([Research engineer at EffiSciences],
-  [Automated supervision of LLM-agents, design of a benchmark to evaluate detection of out-of-distribution failure modes by monitoring systems.], 
+  [Design of a benchmark to evaluate monitoring systems of LLM agents, including detection of out-of-distribution failure modes by monitoring systems.], 
   [Feb. 2024 -- present],
-  [Paris, FR])
+  Paris,
+  star: true
+)
+
+#entry([Head Teacher for two ML4Good, a summer school on systemic AI risk],
+  [Delivery and improvement of 10 days of technical and conceptual content for \~20 participants, covering threat modeling, technical safety and AI policy.],
+  [Aug. 2023\ March 2024],
+  Berlin,
+  star: true
+)
+
 
 #entry([Research assistant, Machine Learning Group, Cambridge University],
-  [Research on goal misgeneralisation in Reinforcement Learning (RL) with N. Alex and D. Krueger.\
-  #emoji-svg("page") "#link(
+  [Research on goal misgeneralisation in Reinforcement Learning (RL) with N. Alex and D. Krueger.
+  //#emoji-svg("page") 
+  Published "#link(
     "https://openreview.net/forum?id=QT4tXTqTTr",
   )[ #emph[Goal Misgeneralization as Implicit Goal Conditioning]]" in the GCRL workshop at Neurips 2023
 ],
   [July -- Sep. 2023],
-  [Cambridge, UK])
-
-#entry([Teacher at ML4Good, a summer school on AI risk],
-  [Delivery and improvement of 10 days of technical and conceptual content. 21 participants.],
-  [August 2023],
-  [Berlin, DE])
-
-#entry([Lead developer for SPRIG],
+  Cambridge)
+  
+#entry([Lead developer for the startup SPRIG],
   [Developing a distributed platform to increase confidence in mathematical proofs.],
-  [2022 -- 2023],
-  [Lausanne, CH],
+  [Jan. 22 -- May 23],
+  Lausanne,
   url: [#link("https://sprigproofs.org")[`sprigproofs.org`]]
 )
 
-#entry([Teaching assistant at EPFL],
-  [TA for 8 courses for 1st, 2nd and 3rd year bachelors: Analysis (real, vectorial, complex), C++, mathematical logic, computer science basics.],
-  [2019 - 2021],
-  [Lausanne, CH])
+// #entry([Teaching assistant at EPFL],
+//   [TA for 8 courses for 1st, 2nd and 3rd year bachelors: Analysis (real, vectorial, complex), C++, mathematical logic, computer science basics.],
+//   [2019 - 2021],
+//   Lausanne)
 
-#entry([Game development & small projects],
-  [Creation of 10+ small games under strong time constraints for jams, a 2D EsoLang (#link("https://github.com/aaronjanse/asciidots")[Asciidots])...],
-  [],
-  [],
-  url: [#link("https://cozyfractal.com/showcase")[`cozyfractal.com/showcase`]]
+= Education
+
+#entry([Master's in Communication Systems, Ecole Polytechnique Fédérale de Lausanne (EPFL)],
+  [Focus on artificial intelligence, formal verification and advanced algorithms. Minor in Mathematics.],
+  [Sep. 2021 -- present],
+  Lausanne)
+
+#entry([Summer school "Science and Policy – How to bridge the gap?"],
+  [5 days on science for policy, science communication, open science and the Swiss policy landscape.],
+  [July 2023],
+  loc([Interlaken], "CH"),
+  star: true
 )
+
+#entry([ARENA, Alignment Research Engineer Accelerator],
+  [6 weeks intensive training on interpretability, RL and training at scale.],
+  [May -- June 2023],
+  London,
+  url: [#link("https://arena.education/")[`arena.education`]]
+)
+
+// #entry([Semester research projects in Mathematical Logic and Game Theory],
+//   [Guided research under Jacques Duparc's supervision\
+//    #emoji-svg("page") "#link(
+//       "https://gitlab.com/ddorn/ba6/-/jobs/artifacts/master/raw/projet/projet.pdf?job=pdf",
+//     )[ #emph[Infinite games in the Baire space] ]", Bachelor thesis, Spring 2021\
+//    #emoji-svg("page") "#link(
+//       "https://github.com/ddorn/safra/blob/master/out/projet.pdf",
+//     )[ #emph[Between decidable logics: $omega$-automata and infinite games]]", Master’s semester project, Spring 2022
+// ],
+//   [2021 -- 2022],
+//   Lausanne)
+  
+#entry([Bachelor's in Mathematics at EPFL],
+  [Passed with a 5.42/6 average and top 5/100 of my year.],
+  [Sep. 18 -- July 2021],
+  Lausanne)
+
+
+
+
   
 = Volunteering
-#entry([Founder of the Safe AI Lausanne student association],
-  [ Events on reducing systemic and catastrophic risks from AI. Organisation of a 10-day bootcamp, talks and a reading group. Moderation of two round table discussions.
+#entry([Founder and President of the Safe AI Lausanne student association],
+  [Led a team of 8 through the design of a strategy, resulting in a 10-day winter school on systemic AI risks, 3 talks and 2 panel discussions with a total of 10 experts, and a talk for TEDxEcublens.
 ],
-  [2022 -- 2024],
-  [Lausanne, CH])
+  [Sep. 22 -- March 24],
+  Lausanne,
+  star: true
+)
   
 // #entry([Vice-president, then advisor for Effective Altruism Lausanne],
 //   [Association aiming to find the best ways to help others and put them into practice],
 //   [2022 -- 2023],
-//   [Lausanne, CH])
+//   Lausanne)
   
-#entry([Co-founder of Chocopoly, the hot chocolate association of EPFL],
-  [Followed by 400+ students, collaborated with 19 associations and served 1288L of hot chocolate.],
-  [2021 -- 2023],
-  [Lausanne, CH])
+// #entry([Co-founder of Chocopoly, the hot chocolate association of EPFL],
+//   [Established 19 collaborations with other associations and served 1288L of hot chocolate.],
+//   [2021 -- 2023],
+//   Lausanne)
   
-#entry([President of CQFD],
-  [The association of mathematics students of EPFL. Management of a team of 14 people.],
-  [2020 -- 2021],
-  [Lausanne, CH])
+#entry([President of CQFD, the mathematics students' association of EPFL],
+  [Management of a team of 14 people, dialogue with the direction of the faculty.],
+  [Sep. 20 -- Sep. 21],
+  Lausanne)
   
-#entry([Member of the national organisation committee of the TFJM#super("2")],
-  [The french tournament of young mathematicians. Coordination of 9 events across France, development of a new online infrastructure and communication.],
-  [2020 -- 2021],
-  [Many places, FR])
+#entry([National organisation committee of the french tournament of young mathematicians, TFJM#super("2")],
+[Coordination of 9 events across France with 600 participants, development of a new online infrastructure and communication.],
+  [Sep. 20 -- May 21],
+  loc([Many places], "FR"))
 
-= Education
+= Awards & Extra
 
-#entry([Master's at EPFL in Communication Systems, minor in Mathematics],
-  [Focus on artificial intelligence, formal verification and complexity theory.],
-  [2021 -- present],
-  [Lausanne, CH])
+#entry([1st place in the hackathon the "Digital Services Act RAG Race"],
+  [Creation of a Q&A system for questions on the DSA based on open-source models, in a team of 3, during a 7 hours hackathon organised by the PEReN and the European Commission.],
+  [February 2024],
+  Bruxelles,
+  star: true
+)
   
-#entry([Summer school "Science and Policy – How to bridge the gap?"],
-  [Topics: science for policy, science communication, open science, Swiss policy landscape.],
-  [July 2023],
-  [Interlaken, CH])
-  
-#entry([ARENA, Alignment Research Engineer Accelerator],
-  [6 weeks intensive training on interpretability, RL and training at scale.],
-  [May -- June 2023],
-  [London, UK], 
-  // url: [#link("https://arena.education/")[`arena.education`]]
+#entry([Game development, tool design, websites],
+  [Creation of 10+ small games under strong time constraints and pressure for game jams, a 2D EsoLang (#link("https://github.com/aaronjanse/asciidots")[Asciidots]), multiple software tools and websites.
+  Teamwork and sprints.
+],
+  [2014 -- present],
+  [#loc("Earth", "earth")], 
+  url: [#link("https://cozyfractal.com/showcase")[`cozyfractal.com/showcase`]]
 )
 
-#entry([Semester research projects in Mathematical Logic and Game Theory],
-  [Guided research under Jacques Duparc's supervision\
-   #emoji-svg("page") "#link(
-      "https://gitlab.com/ddorn/ba6/-/jobs/artifacts/master/raw/projet/projet.pdf?job=pdf",
-    )[ #emph[Infinite games in the Baire space] ]", Bachelor thesis, Spring 2021\
-   #emoji-svg("page") "#link(
-      "https://github.com/ddorn/safra/blob/master/out/projet.pdf",
-    )[ #emph[Between decidable logics: $omega$-automata and infinite games]]", Master’s semester project, Spring 2022
-],
-  [2021 -- 2022],
-  [Lausanne, CH])
+
+#let skill(name, time, details: none) = [
+  *#name*
+  #if details != none [(#details)]
+  #box(width: 1fr, 
+    // stroke: (bottom: accent-strong + 0.5pt)
+    text(fill: accent-strong, repeat([.]))
+  )
+  _#time _\
+]
+
+#v(0.2cm)
+#grid(columns: (3fr, 2fr), gutter: 0.5cm)[
+= Hard Skills
+#skill([#if use-stars {emoji-svg("star")} Python], [6000h], details: [pytorch, huggingface, streamlit, click, mypy, pytest…])
+#skill([JavaScript / CSS / HTML], [500h], details: [VueJS, TailwindCSS])
+#skill([Rust, C++, Scala, LaTeX], [300h each])
+#skill([System Administration], [200h], details: [Git, Docker, Bash, remote machines...])
+
   
-#entry([Bachelor's in Mathematics at EPFL],
-  [Passed with a 5.42/6 average and top 5/100 of my year.],
-  [2018 -- 2021],
-  [Lausanne, CH])
+][
+= Soft Skills
+  - Training in Non-Violent Communication
+  - Public speaking
+  - Native in French (C2)
+  - Fluent in English (C1)
+]
 
 
-#pagebreak()
-#set page(margin: (y: 1cm, x: 0.5cm))
-
-
-= Skills
-// Taken from https://github.com/typst/typst/discussions/1732
-#let TeX = style(styles => {
-  set text(font: "New Computer Modern")
-  let e = measure("E", styles)
-  let T = "T"
-  let E = text(1em, baseline: e.height * 0.31, "E")
-  let X = "X"
-  box(T + h(-0.15em) + E + h(-0.125em) + X)
-})
-
-#let LaTeX = style(styles => {
-  set text(font: "New Computer Modern")
-  let a-size = 0.66em
-  let l = measure("L", styles)
-  let a = measure(text(a-size, "A"), styles)
-  let L = "L"
-  let A = box(scale(x: 105%, text(a-size, baseline: a.height - l.height, "A")))
-  box(L + h(-a.width * 0.67) + A + h(-a.width * 0.25) + TeX)
-})
+#show: ""
 
 - *Programming* Main hobby for the 10 last years. Many projects can be seen at
         #link("https://cozyfractal.com/showcase")[`cozyfractal.com/showcase`]
+
   - *Python (6000h)* ~~ Some of the modules I enjoyed using in more than 2 projects each include:
     #{
-      let modules = "asyncio, click, einops, fastAPI, flask, jaxtyping, joblib, huggingface, kivy, matplotlib, moderngl, mypy, numba, numpy, pillow, plotly, poetry, pre-commit, pygame, pytest, pytorch, stable_baselines3, streamlit, transformer_lens, typeguard".split(", ").sorted()
+      let modules = "asyncio, click, einops, fastAPI, flask, jaxtyping, joblib, huggingface, kivy, matplotlib, moderngl, mypy, numba, numpy, pillow, plotly, poetry, pre-commit, pygame, pytest, pytorch, stable_baselines3, streamlit, transformer_lens, typeguard, typer".split(", ").sorted()
       for name in modules [
         #raw(name), 
       ]
@@ -217,9 +278,9 @@
   - *Rust (300h)*, #strong[Scala (200h)] and #strong[C/C++ (300h)]
 
   - *JavaScript / CSS / HTML (500h)* ~~ Also using, VueJS, TailwindCSS, typescript
-  - *Other languages* ~~ #LaTeX (200h), Typst, 6502/NES assembly, Haskell, Matlab, Lean
+  - *Other languages* ~~ LaTeX (200h), Typst, 6502/NES assembly, Haskell, Matlab, Lean
 
   - *Tools* ~~ Vim, Jetbrains IDEs, VS Code, git, Docker, slurm, runAI, inkscape, OBS, Google Suite, ArchLinux (i3wm/sway)…
   
-- *Collaboration:* Non-violent communication
+- *Soft skills:* Non-violent communication
 - #strong[Languages:] French (native), English (fluent)//, Italian & German (basics, willing to learn more)
