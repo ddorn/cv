@@ -5,6 +5,7 @@
 #let accent-weak = rgb("d0bab0")  // for links
 #let side = 3cm
 #let use-stars = false
+#let use-stars = true
 
 // Style for the colored headings
 #show heading.where(level: 1): heading => {
@@ -50,10 +51,11 @@
 #let Cambridge = loc("Cambridge", "uk")
 #let London = loc("London", "uk")
 #let Bruxelles = loc("Bruxelles", "be")
+#let Europe = loc("Across Europe", "europe")
 
 
 #let entry(name, descr, dates, loc, url: none, star: false) = [
-  #grid(columns: (side, auto), 
+  #grid(columns: (side, auto),
     gutter: 0.6cm,
     // inset: (x: 0.3cm),
     // stroke: black,
@@ -73,8 +75,8 @@
 // Header
 #box(height: 4cm)[
   #grid(
-    columns: (auto, 1fr, auto), 
-    inset: (0cm, 0.5cm, 0cm), 
+    columns: (auto, 1fr, auto),
+    inset: (0cm, 0.5cm, 0cm),
     align: (left + top, right + bottom, left),
     // stroke: black
   )[
@@ -82,19 +84,19 @@
     #text(size: 20pt)[*Diego DORN*]\
     #text(size: 16pt)[Research Engineer]\
     #v(1fr)
-    #emoji-svg("enveloppe") 
+    #emoji-svg("enveloppe")
       #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
-    #emoji-svg("internet") 
+    #emoji-svg("internet")
       #link("https://cozyfractal.com")[`cozyfractal.com`]\
     #emoji-svg("github")
       #link("https://github.com/ddorn")[`github.com/ddorn`]
     #v(0.5cm)
   ][ #box(width: 92%, height: 100%)[  // You can tweak this number% for the width of the description text so that it looks best
     #show strong: txt => [#text(fill: accent-strong)[#txt]]  // Color the bold text
-    Diego works on the 
-    mitigation of *systemic risks* \ from 
+    Diego works on the
+    mitigation of *systemic risks* \ from
     *general-purpose artificial intelligence* systems.
-    
+
     He has extensive expertise in *software engineering* and
     experience in *teaching*, *leadership* and *communication* from his volunteering.\
      // and volunteer expertise in *management* and *event organisation* especially in the
@@ -107,31 +109,36 @@
 
 #v(-0.4cm)
 = Work Experience
-#entry([Research engineer at EffiSciences],
-  [Design of a benchmark to evaluate monitoring systems of LLM agents, including detection of out-of-distribution failure modes by monitoring systems.], 
+#entry([Research engineer at CeSIA (French Center for AI safety)],
+  [Lead the design of benchmarks to evaluate monitoring systems of LLM agents.
+  \
+  Published "#link(
+    "https://arxiv.org/abs/2406.01364",
+  )[ #emph[BELLS: A Framework Towards Future Proof Benchmarks for the Evaluation of LLM Safeguards]]" in the NextGen AI Safety workshop at ICML 2024.
+  ],
   [Feb. 2024 -- present],
   Paris,
   star: true
 )
 
-#entry([Head Teacher for two ML4Good, a summer school on systemic AI risk],
+#entry([Head Teacher for three ML4Good, a summer school on systemic AI risk],
   [Delivery and improvement of 10 days of technical and conceptual content for \~20 participants, covering threat modeling, technical safety and AI policy.],
-  [Aug. 2023\ March 2024],
-  Berlin,
+  [Aug. 2023 -- present],
+  Europe,
   star: true
 )
 
 
 #entry([Research assistant, Machine Learning Group, Cambridge University],
   [Research on goal misgeneralisation in Reinforcement Learning (RL) with N. Alex and D. Krueger.
-  //#emoji-svg("page") 
+  //#emoji-svg("page")
   Published "#link(
     "https://openreview.net/forum?id=QT4tXTqTTr",
   )[ #emph[Goal Misgeneralization as Implicit Goal Conditioning]]" in the GCRL workshop at Neurips 2023
 ],
   [July -- Sep. 2023],
   Cambridge)
-  
+
 #entry([Lead developer for the startup SPRIG],
   [Developing a distributed platform to increase confidence in mathematical proofs.],
   [Jan. 22 -- May 23],
@@ -176,7 +183,7 @@
 // ],
 //   [2021 -- 2022],
 //   Lausanne)
-  
+
 #entry([Bachelor's in Mathematics at EPFL],
   [Passed with a 5.42/6 average and top 5/100 of my year.],
   [Sep. 18 -- July 2021],
@@ -185,7 +192,7 @@
 
 
 
-  
+
 = Volunteering
 #entry([Founder and President of the Safe AI Lausanne student association],
   [Led a team of 8 through the design of a strategy, resulting in a 10-day winter school on systemic AI risks, 3 talks and 2 panel discussions with a total of 10 experts, and a talk for TEDxEcublens.
@@ -194,24 +201,24 @@
   Lausanne,
   star: true
 )
-  
+
 // #entry([Vice-president, then advisor for Effective Altruism Lausanne],
 //   [Association aiming to find the best ways to help others and put them into practice],
 //   [2022 -- 2023],
 //   Lausanne)
-  
+
 // #entry([Co-founder of Chocopoly, the hot chocolate association of EPFL],
 //   [Established 19 collaborations with other associations and served 1288L of hot chocolate.],
 //   [2021 -- 2023],
 //   Lausanne)
-  
+
 #entry([President of CQFD, the mathematics students' association of EPFL],
   [Management of a team of 14 people, dialogue with the direction of the faculty.],
   [Sep. 20 -- Sep. 21],
   Lausanne)
-  
+
 #entry([National organisation committee of the french tournament of young mathematicians, TFJM#super("2")],
-[Coordination of 9 events across France with 600 participants, development of a new online infrastructure and communication.],
+[Coordination of 9 events for 600 participants, communication, and creation of a new  online infrastructure.],
   [Sep. 20 -- May 21],
   loc([Many places], "FR"))
 
@@ -223,13 +230,13 @@
   Bruxelles,
   star: true
 )
-  
+
 #entry([Game development, tool design, websites],
   [Creation of 10+ small games under strong time constraints and pressure for game jams, a 2D EsoLang (#link("https://github.com/aaronjanse/asciidots")[Asciidots]), multiple software tools and websites.
   Teamwork and sprints.
 ],
   [2014 -- present],
-  [#loc("Earth", "earth")], 
+  [#loc("Earth", "earth")],
   url: [#link("https://cozyfractal.com/showcase")[`cozyfractal.com/showcase`]]
 )
 
@@ -237,7 +244,7 @@
 #let skill(name, time, details: none) = [
   *#name*
   #if details != none [(#details)]
-  #box(width: 1fr, 
+  #box(width: 1fr,
     // stroke: (bottom: accent-strong + 0.5pt)
     text(fill: accent-strong, repeat([.]))
   )
@@ -252,7 +259,7 @@
 #skill([Rust, C++, Scala, LaTeX], [300h each])
 #skill([System Administration], [200h], details: [Git, Docker, Bash, remote machines...])
 
-  
+
 ][
 = Soft Skills
   - Training in Non-Violent Communication
@@ -271,16 +278,16 @@
     #{
       let modules = "asyncio, click, einops, fastAPI, flask, jaxtyping, joblib, huggingface, kivy, matplotlib, moderngl, mypy, numba, numpy, pillow, plotly, poetry, pre-commit, pygame, pytest, pytorch, stable_baselines3, streamlit, transformer_lens, typeguard, typer".split(", ").sorted()
       for name in modules [
-        #raw(name), 
+        #raw(name),
       ]
     }
-  
+
   - *Rust (300h)*, #strong[Scala (200h)] and #strong[C/C++ (300h)]
 
   - *JavaScript / CSS / HTML (500h)* ~~ Also using, VueJS, TailwindCSS, typescript
   - *Other languages* ~~ LaTeX (200h), Typst, 6502/NES assembly, Haskell, Matlab, Lean
 
   - *Tools* ~~ Vim, Jetbrains IDEs, VS Code, git, Docker, slurm, runAI, inkscape, OBS, Google Suite, ArchLinux (i3wm/sway)…
-  
+
 - *Soft skills:* Non-violent communication
 - #strong[Languages:] French (native), English (fluent)//, Italian & German (basics, willing to learn more)
