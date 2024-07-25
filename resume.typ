@@ -125,6 +125,7 @@
   [Delivery and improvement of 10 days of technical and conceptual content for \~20 participants, covering threat modeling, technical safety and AI policy.],
   [Aug. 2023 -- present],
   Europe,
+  url: [#link("https://www.ml4good.org")[`ml4good.org`]],
   star: true
 )
 
