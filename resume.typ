@@ -87,7 +87,7 @@
     #emoji-svg("enveloppe")
       #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
     #emoji-svg("internet")
-      #link("https://cozyfractal.com")[`cozyfractal.com`]\
+      #link("https://ddorn.fr")[`ddorn.fr`]\
     #emoji-svg("github")
       #link("https://github.com/ddorn")[`github.com/ddorn`]
     #v(0.5cm)
@@ -110,8 +110,7 @@
 #v(-0.4cm)
 = Work Experience
 #entry([Research engineer at CeSIA (French Center for AI safety)],
-  [Lead the design of benchmarks to evaluate monitoring systems of LLM agents.
-  \
+  [Lead the design of benchmarks to evaluate jailbreak and hallucination detectors for LLMs, red-teamed input-output safeguards.
   Published "#link(
     "https://arxiv.org/abs/2406.01364",
   )[ #emph[BELLS: A Framework Towards Future Proof Benchmarks for the Evaluation of LLM Safeguards]]" in the NextGen AI Safety workshop at ICML 2024.
@@ -121,8 +120,8 @@
   star: true
 )
 
-#entry([Head Teacher for three ML4Good, a summer school on systemic AI risk],
-  [Delivery and improvement of 10 days of technical and conceptual content for \~20 participants, covering threat modeling, technical safety and AI policy.],
+#entry([Head Teacher for four ML4Good, a summer school on systemic AI risk],
+  [Delivery and improvement of 10 days of technical and conceptual workshopsw for \~20 participants, covering threat modeling, technical safety and AI policy. Management of the teaching team of 2\~3.],
   [Aug. 2023 -- present],
   Europe,
   url: [#link("https://www.ml4good.org")[`ml4good.org`]],
@@ -156,7 +155,7 @@
 
 #entry([Master's in Communication Systems, Ecole Polytechnique Fédérale de Lausanne (EPFL)],
   [Focus on artificial intelligence, formal verification and advanced algorithms. Minor in Mathematics.],
-  [Sep. 2021 -- present],
+  [Sep. 21 -- Aug. 2024],
   Lausanne)
 
 #entry([Summer school "Science and Policy – How to bridge the gap?"],
@@ -238,7 +237,7 @@
 ],
   [2014 -- present],
   [#loc("Earth", "earth")],
-  url: [#link("https://cozyfractal.com/showcase")[`cozyfractal.com/showcase`]]
+  url: [#link("https://ddorn.fr/showcase")[`ddorn.fr/showcase`]]
 )
 
 
@@ -273,7 +272,7 @@
 #show: ""
 
 - *Programming* Main hobby for the 10 last years. Many projects can be seen at
-        #link("https://cozyfractal.com/showcase")[`cozyfractal.com/showcase`]
+        #link("https://ddorn.fr/showcase")[`ddorn.fr/showcase`]
 
   - *Python (6000h)* ~~ Some of the modules I enjoyed using in more than 2 projects each include:
     #{
