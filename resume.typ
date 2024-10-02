@@ -4,6 +4,7 @@
 #let accent-strong = rgb("#CDA56D")  // for bold text
 #let accent-weak = rgb("d0bab0")  // for links
 #let side = 3cm
+#let entry-sep = -0.0cm  // to make things fit in one page
 #let use-stars = false
 #let use-stars = true
 
@@ -67,7 +68,7 @@
       *#name* #if url != none [(#url)]\
        _#descr _ ],
   )
-  #v(-0.06cm)
+  #v(entry-sep)
 ]
 
 
@@ -98,9 +99,9 @@
     *general-purpose artificial intelligence* systems.
 
     He has extensive expertise in *software engineering* and
-    experience in *teaching*, *leadership* and *communication* from his volunteering.\
-     // and volunteer expertise in *management* and *event organisation* especially in the
-    He finishes his master in Communication Systems in August 2024.
+    experience in *teaching*, *leadership* and *communication* from his volunteering.
+    \
+    He finished his master in Communication Systems in August 2024.
   ] //#h(-0.5cm)
 ][
     // #image("images/photo.JPG")
@@ -115,7 +116,7 @@
     "https://arxiv.org/abs/2406.01364",
   )[ #emph[BELLS: A Framework Towards Future Proof Benchmarks for the Evaluation of LLM Safeguards]]" in the NextGen AI Safety workshop at ICML 2024.
   ],
-  [Feb. 2024 -- present],
+  [Feb. -- Aug. 2024 ],
   Paris,
   star: true
 )
@@ -154,7 +155,7 @@
 = Education
 
 #entry([Master's in Communication Systems, Ecole Polytechnique Fédérale de Lausanne (EPFL)],
-  [Focus on artificial intelligence, formal verification and advanced algorithms. Minor in Mathematics.],
+  [Focus on artificial intelligence, formal verification and advanced algorithms. Minor in Mathematics. Obtained with an average of 5.59/6 and the maximum grade for the master thesis.],
   [Sep. 21 -- Aug. 2024],
   Lausanne)
 
@@ -217,10 +218,10 @@
   [Sep. 20 -- Sep. 21],
   Lausanne)
 
-#entry([National organisation committee of the french tournament of young mathematicians, TFJM#super("2")],
-[Coordination of 9 events for 600 participants, communication, and creation of a new  online infrastructure.],
-  [Sep. 20 -- May 21],
-  loc([Many places], "FR"))
+// #entry([National organisation committee of the french tournament of young mathematicians, TFJM#super("2")],
+// [Coordination of 9 events for 600 participants, communication, and creation of a new  online infrastructure.],
+//   [Sep. 20 -- May 21],
+//   loc([Many places], "FR"))
 
 = Awards & Extra
 
