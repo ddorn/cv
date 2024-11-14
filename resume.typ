@@ -92,16 +92,17 @@
     #emoji-svg("github")
       #link("https://github.com/ddorn")[`github.com/ddorn`]
     #v(0.5cm)
-  ][ #box(width: 92%, height: 100%)[  // You can tweak this number% for the width of the description text so that it looks best
+  ][ #box(width: 82%, height: 100%)[  // You can tweak this number% for the width of the description text so that it looks best
     #show strong: txt => [#text(fill: accent-strong)[#txt]]  // Color the bold text
-    Diego works on the
-    mitigation of *systemic risks* \ from
-    *general-purpose artificial intelligence* systems.
+    A self-taught *research engineer* with 90+ public repositories on GitHub
+    who likes
+    to work with humans,
+    learn,
+    and create good tools
+    that are actually useful for others.
 
-    He has extensive expertise in *software engineering* and
-    experience in *teaching*, *leadership* and *communication* from his volunteering.
-    \
-    He finished his master in Communication Systems in August 2024.
+    His last projects where on the mitigation of *systemic risks* from *general-purpose artificial intelligence* systems
+    (research, engineering, teaching)
   ] //#h(-0.5cm)
 ][
     // #image("images/photo.JPG")
@@ -163,14 +164,15 @@
   [5 days on science for policy, science communication, open science and the Swiss policy landscape.],
   [July 2023],
   loc([Interlaken], "CH"),
-  star: true
+  // star: true
 )
 
 #entry([ARENA, Alignment Research Engineer Accelerator],
   [6 weeks intensive training on interpretability, RL and training at scale.],
   [May -- June 2023],
   London,
-  url: [#link("https://arena.education/")[`arena.education`]]
+  url: [#link("https://arena.education/")[`arena.education`]],
+  // star: true,
 )
 
 // #entry([Semester research projects in Mathematical Logic and Game Theory],
@@ -196,7 +198,9 @@
 
 = Volunteering
 #entry([Founder and President of the Safe AI Lausanne student association],
-  [Led a team of 8 through the design of a strategy, resulting in a 10-day winter school on systemic AI risks, 3 talks and 2 panel discussions with a total of 10 experts, and a talk for TEDxEcublens.
+  [Led a team of 8 through the design of a strategy, resulting in a 10-day
+  winter school on systemic AI risks, 3 talks and 2 panel discussions with a
+  total of 10 experts, and giving a talk for TEDxEcublens.
 ],
   [Sep. 22 -- March 24],
   Lausanne,
