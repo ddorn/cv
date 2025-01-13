@@ -94,7 +94,7 @@
     #v(0.5cm)
   ][ #box(width: 82%, height: 100%)[  // You can tweak this number% for the width of the description text so that it looks best
     #show strong: txt => [#text(fill: accent-strong)[#txt]]  // Color the bold text
-    A self-taught *research engineer* with 90+ public repositories on GitHub
+    An EPFL master graduate and *research engineer* with 90+ public repositories on GitHub
     who likes
     to work with humans,
     learn,
@@ -123,7 +123,7 @@
 )
 
 #entry([Head Teacher for four ML4Good, a summer school on systemic AI risk],
-  [Delivery and improvement of 10 days of technical and conceptual workshopsw for \~20 participants, covering threat modeling, technical safety and AI policy. Management of the teaching team of 2\~3.],
+  [Delivery and improvement of 10 days of technical and conceptual workshops for \~20 participants, covering threat modeling, technical safety and AI policy. Management of the teaching team of 2\~3.],
   [Aug. 2023 -- present],
   Europe,
   url: [#link("https://www.ml4good.org")[`ml4good.org`]],
