@@ -4,7 +4,7 @@
 #let accent-strong = rgb("#CDA56D")  // for bold text
 #let accent-weak = rgb("d0bab0")  // for links
 #let side = 3cm
-#let entry-sep = -0.0cm  // to make things fit in one page
+#let entry-sep = -0.03cm  // to make things fit in one page
 #let use-stars = false
 #let use-stars = true
 
@@ -159,22 +159,6 @@
   [Focus on artificial intelligence, formal verification and advanced algorithms. Minor in Mathematics. Obtained with an average of 5.59/6 and the maximum grade for the master thesis.],
   [Sep. 21 -- Aug. 2024],
   Lausanne)
-
-#entry([Summer school "Science and Policy – How to bridge the gap?"],
-  [5 days on science for policy, science communication, open science and the Swiss policy landscape.],
-  [July 2023],
-  loc([Interlaken], "CH"),
-  // star: true
-)
-
-#entry([ARENA, Alignment Research Engineer Accelerator],
-  [6 weeks intensive training on interpretability, RL and training at scale.],
-  [May -- June 2023],
-  London,
-  url: [#link("https://arena.education/")[`arena.education`]],
-  // star: true,
-)
-
 // #entry([Semester research projects in Mathematical Logic and Game Theory],
 //   [Guided research under Jacques Duparc's supervision\
 //    #emoji-svg("page") "#link(
@@ -227,7 +211,23 @@
 //   [Sep. 20 -- May 21],
 //   loc([Many places], "FR"))
 
-= Awards & Extra
+= Extra & Awards
+
+#entry([Summer school "Science and Policy – How to bridge the gap?"],
+  [5 days on science for policy, science communication, open science and the Swiss policy landscape.],
+  [July 2023],
+  loc([Interlaken], "CH"),
+  // star: true
+)
+
+#entry([ARENA, Alignment Research Engineer Accelerator],
+  [6 weeks intensive training on interpretability, RL and training at scale.],
+  [May -- June 2023],
+  London,
+  url: [#link("https://arena.education/")[`arena.education`]],
+  // star: true,
+)
+
 
 #entry([1st place in the hackathon the "Digital Services Act RAG Race"],
   [Creation of a Q&A system for questions on the DSA based on open-source models, in a team of 3, during a 7 hours hackathon organised by the PEReN and the European Commission.],
@@ -263,8 +263,6 @@
 #skill([JavaScript / CSS / HTML], [500h], details: [VueJS, TailwindCSS])
 #skill([Rust, C++, Scala, LaTeX], [300h each])
 #skill([System Administration], [200h], details: [Git, Docker, Bash, remote machines...])
-
-
 ][
 = Soft Skills
   - Training in Non-Violent Communication
@@ -273,6 +271,7 @@
   - Fluent in English (C1)
 ]
 
+#v(-0.4cm)
 
 #show: ""
 
