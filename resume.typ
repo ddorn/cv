@@ -7,6 +7,7 @@
 #let entry-sep = -0.03cm  // to make things fit in one page
 #let use-stars = false
 #let use-stars = true
+#let anonymous-version = false
 
 // Style for the colored headings
 #show heading.where(level: 1): heading => {
@@ -51,9 +52,10 @@
 #let Berlin = loc("Berlin", "de")
 #let Cambridge = loc("Cambridge", "uk")
 #let London = loc("London", "uk")
-#let Bruxelles = loc("Bruxelles", "be")
+#let Bruxelles = loc("Brussels", "be")
 #let Europe = loc("Across Europe", "europe")
 
+#let hide-when-anonymous(txt, redacted-content: none) = { if not anonymous-version { txt } else { redacted-content } }
 
 #let entry(name, descr, dates, loc, url: none, star: false) = [
   #grid(columns: (side, auto),
@@ -82,15 +84,17 @@
     // stroke: black
   )[
     #v(0.5cm)
-    #text(size: 20pt)[*Diego DORN*]\
+    #hide-when-anonymous(text(size: 20pt)[*Diego DORN*])\
     #text(size: 16pt)[Research Engineer]\
     #v(1fr)
-    #emoji-svg("enveloppe")
-      #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
-    #emoji-svg("internet")
-      #link("https://ddorn.fr")[`ddorn.fr`]\
-    #emoji-svg("github")
-      #link("https://github.com/ddorn")[`github.com/ddorn`]
+    #hide-when-anonymous([
+      #emoji-svg("envelope")
+        #link("mailto:cv@ddorn.fr")[`cv@ddorn.fr`]\
+      #emoji-svg("internet")
+        #link("https://ddorn.fr")[`ddorn.fr`]\
+      #emoji-svg("github")
+        #link("https://github.com/ddorn")[`github.com/ddorn`]
+    ])
     #v(0.5cm)
   ][ #box(width: 82%, height: 100%)[  // You can tweak this number% for the width of the description text so that it looks best
     #show strong: txt => [#text(fill: accent-strong)[#txt]]  // Color the bold text
@@ -101,7 +105,7 @@
     and create good tools
     that are actually useful for others.
 
-    His last projects where on the mitigation of *systemic risks* from *general-purpose artificial intelligence* systems
+    His latest projects were on the mitigation of *systemic risks* from *general-purpose artificial intelligence* systems
     (research, engineering, teaching)
   ] //#h(-0.5cm)
 ][
@@ -111,41 +115,41 @@
 
 #v(-0.4cm)
 = Work Experience
-#entry([Research engineer at CeSIA (French Center for AI safety)],
-  [Lead the design of benchmarks to evaluate jailbreak and hallucination detectors for LLMs, red-teamed input-output safeguards.
+#entry([Head Teacher for ML4Good, a summer school on AI safety],
+  [Delivery and improvement of 10 days of workshops for ~20 participants at each iteration, covering threat modeling, technical safety and AI policy. Management of a teaching team of 2-3.],
+  [Aug. 2023 -- present],
+  Europe,
+  url: [#link("https://www.ml4good.org")[`ml4good.org`]],
+  // star: true
+)
+
+#entry([Research engineer at CeSIA (French Center for AI Safety)],
+  [Led the design of benchmarks to evaluate jailbreak and hallucination detectors for LLMs, red-teamed input-output safeguards.
   Published "#link(
     "https://arxiv.org/abs/2406.01364",
-  )[ #emph[BELLS: A Framework Towards Future Proof Benchmarks for the Evaluation of LLM Safeguards]]" in the NextGen AI Safety workshop at ICML 2024.
+  )[ #emph[BELLS: A Framework Towards Future-Proof Benchmarks for the Evaluation of LLM Safeguards]]" in the NextGen AI Safety workshop at ICML 2024.
   ],
   [Feb. -- Aug. 2024 ],
   Paris,
   star: true
 )
 
-#entry([Head Teacher for four ML4Good, a summer school on systemic AI risk],
-  [Delivery and improvement of 10 days of technical and conceptual workshops for \~20 participants, covering threat modeling, technical safety and AI policy. Management of the teaching team of 2\~3.],
-  [Aug. 2023 -- present],
-  Europe,
-  url: [#link("https://www.ml4good.org")[`ml4good.org`]],
-  star: true
-)
-
-
 #entry([Research assistant, Machine Learning Group, Cambridge University],
-  [Research on goal misgeneralisation in Reinforcement Learning (RL) with N. Alex and D. Krueger.
+  [
   //#emoji-svg("page")
   Published "#link(
     "https://openreview.net/forum?id=QT4tXTqTTr",
-  )[ #emph[Goal Misgeneralization as Implicit Goal Conditioning]]" in the GCRL workshop at Neurips 2023
+  )[ #emph[Goal Misgeneralization as Implicit Goal Conditioning]]" in the GCRL workshop at NeurIPS 2023 with N. Alex and D. Krueger.
 ],
   [July -- Sep. 2023],
   Cambridge)
 
 #entry([Lead developer for the startup SPRIG],
-  [Developing a distributed platform to increase confidence in mathematical proofs.],
+  [Full stack development of a distributed platform to increase confidence in mathematical proofs.],
   [Jan. 22 -- May 23],
   Lausanne,
-  url: [#link("https://sprigproofs.org")[`sprigproofs.org`]]
+  url: [#link("https://sprigproofs.org")[`sprigproofs.org`]],
+  star: true,
 )
 
 // #entry([Teaching assistant at EPFL],
@@ -166,7 +170,7 @@
 //     )[ #emph[Infinite games in the Baire space] ]", Bachelor thesis, Spring 2021\
 //    #emoji-svg("page") "#link(
 //       "https://github.com/ddorn/safra/blob/master/out/projet.pdf",
-//     )[ #emph[Between decidable logics: $omega$-automata and infinite games]]", Master’s semester project, Spring 2022
+//     )[ #emph[Between decidable logics: $omega$-automata and infinite games]]", Master's semester project, Spring 2022
 // ],
 //   [2021 -- 2022],
 //   Lausanne)
@@ -183,8 +187,8 @@
 = Volunteering
 #entry([Founder and President of the Safe AI Lausanne student association],
   [Led a team of 8 through the design of a strategy, resulting in a 10-day
-  winter school on systemic AI risks, 3 talks and 2 panel discussions with a
-  total of 10 experts, and giving a talk for TEDxEcublens.
+  winter school on systemic AI risks, 3 talks, and 2 panel discussions with a
+  total of 10 experts, and delivering a talk for TEDxEcublens.
 ],
   [Sep. 22 -- March 24],
   Lausanne,
@@ -229,8 +233,8 @@
 )
 
 
-#entry([1st place in the hackathon the "Digital Services Act RAG Race"],
-  [Creation of a Q&A system for questions on the DSA based on open-source models, in a team of 3, during a 7 hours hackathon organised by the PEReN and the European Commission.],
+#entry([1st place in the hackathon "Digital Services Act RAG Race"],
+  [Creation of a Q&A system for questions on the DSA based on open-source models, in a team of 3, during a 7-hour hackathon organized by the PEReN and the European Commission.],
   [February 2024],
   Bruxelles,
   star: true
@@ -242,7 +246,8 @@
 ],
   [2014 -- present],
   [#loc("Earth", "earth")],
-  url: [#link("https://ddorn.fr/showcase")[`ddorn.fr/showcase`]]
+  url: hide-when-anonymous(link("https://ddorn.fr/showcase")[`ddorn.fr/showcase`], redacted-content: [redacted showcase link]),
+  star: true
 )
 
 
